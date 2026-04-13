@@ -1,26 +1,106 @@
 [
   {
     "id": 1,
-    "titulo": "Dune",
-    "imagen": "dune.jpg",
-    "genero": "Aventura",
-    "sinopsis": "Un joven emprende una misión para salvar su mundo.",
-    "trailer": "https://www.youtube.com/embed/mSY_NbSmaUI"
+    "titulo": "Dune: Parte Dos",
+    "generos": ["Ciencia Ficción", "Aventura", "Drama"],
+    "imagen": "img/dune.jpg",
+    "sinopsis": "Paul Atreides se une a los Fremen y comienza un viaje espiritual y guerrero para convertirse en el mesías de su pueblo. Mientras busca venganza contra los conspiradores que destruyeron su familia, debe elegir entre el amor de su vida y el destino del universo conocido. Esta épica saga explora temas de política, religión, ecología y el peligro del fanatismo en un universo futurista donde el agua vale más que el oro.",
+    "trailer": "https://www.youtube.com/embed/Way9Dexny3w",
+    "estreno": "2025-12-01",
+    "precios": {
+      "estreno": 12.50,
+      "normal": 8.00
+    }
   },
   {
     "id": 2,
-    "titulo": "50 primeras citas",
-    "imagen": "50-primeras-citas.jpg",
-    "genero": "Comedia",
-    "sinopsis": "Henry se enamora de Lucy, una mujer con pérdida de memoria a corto plazo.",
-    "trailer": "https://www.youtube.com/embed/17KJk3ErIx0"
+    "titulo": "50 Primeras Citas",
+    "generos": ["Comedia", "Romance"],
+    "imagen": "img/50-primeras-citas.jpg",
+    "sinopsis": "Henry Roth es un veterinario marino en Hawái que teme el compromiso y sale con turistas para evitar relaciones serias. Todo cambia cuando conoce a Lucy Whitmore, una maestra de arte encantadora con la que conecta de inmediato. Sin embargo, Lucy sufre de amnesia a corto plazo y cada mañana olvida todo lo ocurrido el día anterior. Henry decide conquistarla cada día de nuevo, inventando formas creativas y divertidas de enamorarla una y otra vez sin que ella lo recuerde.",
+    "trailer": "https://www.youtube.com/embed/17KJk3ErIx0",
+    "estreno": "2024-01-15",
+    "precios": {
+      "estreno": 12.50,
+      "normal": 7.50
+    }
   },
   {
     "id": 3,
-    "titulo": "Batman Caballero de la Noche",
-    "imagen": "batman-caballero-de-la-noche.webp",
-    "genero": "Acción",
-    "sinopsis": "La película comienza con el violento robo de uno de los bancos de la mafia por una banda de payasos.",
-    "trailer": "https://www.youtube.com/embed/dzQtWkpc2-c"
+    "titulo": "Batman: El Caballero de la Noche",
+    "generos": ["Acción", "Thriller", "Drama"],
+    "imagen": "img/batman-caballero-de-la-noche.webp",
+    "sinopsis": "En Gotham City, Batman enfrenta su mayor desafío cuando el Joker, un criminal caótico y sin escrúpulos, emerge para sembrar el terror. Con el apoyo del fiscal Harvey Dent y el comisionado Gordon, Batman busca desmantelar la mafia local. Pero el Joker tiene otros planes: demostrar que cualquier persona puede caer en la oscuridad bajo suficiente presión. Un duelo filosófico y visceral entre el orden y el caos que pone a prueba los límites morales del héroe enmascarado.",
+    "trailer": "https://www.youtube.com/embed/dzQtWkpc2-c",
+    "estreno": "2024-03-20",
+    "precios": {
+      "estreno": 12.50,
+      "normal": 8.00
+    }
+  },
+  {
+    "id": 4,
+    "titulo": "Interstellar",
+    "generos": ["Ciencia Ficción", "Drama", "Aventura"],
+    "imagen": "img/interstellar.jpg",
+    "sinopsis": "En un futuro donde la Tierra agoniza por la escasez de alimentos y tormentas de polvo devastadoras, un ex piloto de la NASA llamado Cooper es reclutado para liderar una misión crucial: atravesar un agujero de gusano cerca de Saturno para encontrar un nuevo hogar para la humanidad. Dejando atrás a sus hijos, Cooper se embarca en un viaje interestelar que desafía las leyes del tiempo y el espacio. La película explora el amor como fuerza que trasciende dimensiones y el sacrificio necesario para salvar a la especie humana.",
+    "trailer": "https://www.youtube.com/embed/LYS2O1nl9iM",
+    "estreno": "2026-04-10",
+    "precios": {
+      "estreno": 13.00,
+      "normal": 8.50
+    }
+  },
+  {
+    "id": 5,
+    "titulo": "El Gran Showman",
+    "generos": ["Musical", "Drama", "Biografía"],
+    "imagen": "img/el-gran-showman.jpg",
+    "sinopsis": "Inspirada en la historia del visionario P.T. Barnum, esta película narra el ascenso de un hombre desde la pobreza hasta convertirse en el creador del espectáculo más grande de la tierra. Barnum reúne a un grupo de personas consideradas fuera de lo común por la sociedad y las transforma en artistas de circo celebrados. A través de canciones poderosas y actuaciones emotivas, la historia celebra la diferencia, la perseverancia y el poder de los sueños. Un recordatorio de que la grandeza nace de incluir a quienes el mundo rechaza.",
+    "trailer": "https://www.youtube.com/embed/uprrVIIT0G8",
+    "estreno": "2024-06-05",
+    "precios": {
+      "estreno": 12.50,
+      "normal": 7.00
+    }
+  },
+  {
+    "id": 6,
+    "titulo": "Top Gun: Maverick",
+    "generos": ["Acción", "Drama"],
+    "imagen": "img/top-gun-maverick.jpg",
+    "sinopsis": "Después de más de treinta años de servicio como uno de los mejores aviadores navales, Pete 'Maverick' Mitchell sigue siendo piloto de pruebas evitando el ascenso que lo alejaría de los aviones. Cuando es enviado a entrenar a graduados de Top Gun para una misión especializada y peligrosa, se encuentra con el hijo de su difunto compañero Goose. La misión obliga a Maverick a enfrentar su pasado y sus miedos mientras lidera a la nueva generación en una operación casi imposible que pondrá a prueba sus límites.",
+    "trailer": "https://www.youtube.com/embed/zmFdhZ6gyUM",
+    "estreno": "2026-05-20",
+    "precios": {
+      "estreno": 13.50,
+      "normal": 9.00
+    }
+  },
+  {
+    "id": 7,
+    "titulo": "La La Land",
+    "generos": ["Musical", "Romance", "Drama"],
+    "imagen": "img/la-la-land.jpg",
+    "sinopsis": "Mia, una aspirante a actriz que trabaja como barista en los estudios de Hollywood, conoce a Sebastian, un músico de jazz que sueña con abrir su propio club. Juntos se enamoran mientras persiguen sus sueños en Los Ángeles, una ciudad que puede tanto inspirar como destruir. Su relación se ve tensada cuando el éxito comienza a llegar de maneras inesperadas. Un homenaje visualmente deslumbrante al cine clásico y a los sueños que moldean nuestra identidad, acompañado de una banda sonora inolvidable.",
+    "trailer": "https://www.youtube.com/embed/45s24h98iOc",
+    "estreno": "2024-09-14",
+    "precios": {
+      "estreno": 12.50,
+      "normal": 7.50
+    }
+  },
+  {
+    "id": 8,
+    "titulo": "Avengers: Endgame",
+    "generos": ["Acción", "Ciencia Ficción", "Aventura"],
+    "imagen": "img/avengers-endgame.jpg",
+    "sinopsis": "Tras el devastador chasquido de Thanos que eliminó a la mitad de todas las formas de vida del universo, los Avengers sobrevivientes deben reunirse una vez más. Con recursos limitados y el corazón roto, emprenden una desesperada misión a través del tiempo para recolectar las Gemas del Infinito antes que el titán loco. La batalla final reúne a todos los héroes en un épico enfrentamiento que determinará el destino del universo. Un cierre emocional y espectacular a más de diez años de aventuras cinematográficas interconectadas.",
+    "trailer": "https://www.youtube.com/embed/TcMBFSGVi1c",
+    "estreno": "2026-06-01",
+    "precios": {
+      "estreno": 14.00,
+      "normal": 9.50
+    }
   }
 ]
