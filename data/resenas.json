@@ -1,0 +1,53 @@
+{
+  "1": [
+    { "usuario": "Carlos M.", "calificacion": 5, "comentario": "Una obra maestra visual. Denis Villeneuve supera todas las expectativas con esta segunda parte épica." },
+    { "usuario": "Sofía R.", "calificacion": 4, "comentario": "Zendaya y Chalamet tienen una química increíble. La escala de la película es simplemente impresionante." },
+    { "usuario": "Andrés P.", "calificacion": 5, "comentario": "El mejor blockbuster en años. Cada fotograma parece una pintura. La banda sonora de Zimmer es perfecta." },
+    { "usuario": "María L.", "calificacion": 4, "comentario": "Muy buena continuación. Algo lenta al inicio pero el tercer acto es absolutamente demoledor." }
+  ],
+  "2": [
+    { "usuario": "Laura V.", "calificacion": 4, "comentario": "Una comedia romántica adorable. Adam Sandler y Drew Barrymore tienen una química natural y encantadora." },
+    { "usuario": "Jorge T.", "calificacion": 3, "comentario": "Entretenida aunque predecible. Buena para ver en familia o una tarde tranquila." },
+    { "usuario": "Diana F.", "calificacion": 5, "comentario": "Me hizo reír y llorar. La premisa es original y está ejecutada con mucho corazón y humor genuino." },
+    { "usuario": "Rodrigo E.", "calificacion": 4, "comentario": "Hawái se ve hermoso y la historia es tierna. Uno de los mejores roles de Sandler sin duda." },
+    { "usuario": "Patricia N.", "calificacion": 3, "comentario": "Buena película, aunque algunos chistes no envejecieron tan bien. El mensaje central sigue siendo hermoso." }
+  ],
+  "3": [
+    { "usuario": "Felipe A.", "calificacion": 5, "comentario": "La mejor película de superhéroes jamás filmada. Heath Ledger como el Joker es una actuación histórica e irrepetible." },
+    { "usuario": "Camila B.", "calificacion": 5, "comentario": "Nolan redefinió el género. Más que una película de Batman, es un thriller filosófico sobre el caos y el orden." },
+    { "usuario": "Miguel S.", "calificacion": 5, "comentario": "Absolutamente perfecta. Cada escena tiene peso y propósito. El 'why so serious?' vive en mi cabeza para siempre." },
+    { "usuario": "Valeria Q.", "calificacion": 4, "comentario": "Brillante pero muy oscura. La actuación de Ledger merece todos los premios del mundo y los que no existen." }
+  ],
+  "4": [
+    { "usuario": "Pablo H.", "calificacion": 5, "comentario": "Una película que te hace pensar días después de verla. La escena del agujero negro es científicamente impresionante." },
+    { "usuario": "Ana C.", "calificacion": 5, "comentario": "Nolan en su máxima expresión. El amor como fuerza física que trasciende dimensiones me dejó sin palabras." },
+    { "usuario": "Roberto K.", "calificacion": 4, "comentario": "Visualmente espectacular con música de Zimmer que eriza la piel. El tercer acto puede confundir pero vale la pena." },
+    { "usuario": "Lucía D.", "calificacion": 5, "comentario": "La mejor película de ciencia ficción desde 2001. Matthew McConaughey está extraordinario en cada escena." }
+  ],
+  "5": [
+    { "usuario": "Gabriela W.", "calificacion": 5, "comentario": "Las canciones se quedan pegadas para siempre. Hugh Jackman nació para este papel, su energía es contagiosa." },
+    { "usuario": "Tomás I.", "calificacion": 4, "comentario": "Un espectáculo visual y auditivo. La historia de inclusión y sueños es poderosa y muy necesaria hoy en día." },
+    { "usuario": "Fernanda O.", "calificacion": 5, "comentario": "'This is Me' me hizo llorar. Una celebración de la diversidad con canciones que no olvidaré nunca en mi vida." },
+    { "usuario": "Sebastián U.", "calificacion": 3, "comentario": "Entretenida pero simplificó demasiado la historia real de Barnum. Como musical funciona perfectamente bien." },
+    { "usuario": "Natalia Y.", "calificacion": 4, "comentario": "Perfecta para toda la familia. La coreografía y producción son de primer nivel en absolutamente cada escena." }
+  ],
+  "6": [
+    { "usuario": "Diego Z.", "calificacion": 5, "comentario": "Supera al original en todos los sentidos. Las escenas de vuelo son las mejores filmadas en la historia del cine." },
+    { "usuario": "Mariana X.", "calificacion": 5, "comentario": "Tom Cruise sigue siendo el rey de la acción. La emoción no para en ningún momento de principio a fin." },
+    { "usuario": "Esteban J.", "calificacion": 4, "comentario": "Adrenalina pura de principio a fin. Perfecta para ver en el cine con el sonido más alto posible." },
+    { "usuario": "Catalina G.", "calificacion": 5, "comentario": "Una de las mejores secuelas del cine moderno. Respeta el original y lo eleva a otra dimensión completamente." }
+  ],
+  "7": [
+    { "usuario": "Isidora R.", "calificacion": 5, "comentario": "Una carta de amor a Los Ángeles y a los sueños. Ryan Gosling y Emma Stone son magnéticos juntos en pantalla." },
+    { "usuario": "Mateo L.", "calificacion": 4, "comentario": "Visualmente deslumbrante. El final es triste pero perfectamente honesto sobre el precio de perseguir los sueños." },
+    { "usuario": "Valentina P.", "calificacion": 5, "comentario": "City of Stars me hace llorar cada vez que la escucho. Una película que se siente como un abrazo y una despedida." },
+    { "usuario": "Emilio C.", "calificacion": 4, "comentario": "El homenaje al jazz y al cine clásico está logrado con mucho amor. Damien Chazelle es un genio sin discusión." },
+    { "usuario": "Renata F.", "calificacion": 5, "comentario": "Una experiencia cinematográfica única. La paleta de colores y la fotografía son de una belleza absolutamente incomparable." }
+  ],
+  "8": [
+    { "usuario": "Ignacio T.", "calificacion": 5, "comentario": "El cierre perfecto de una saga épica. Los últimos 40 minutos son pura adrenalina y emoción desbordada." },
+    { "usuario": "Daniela M.", "calificacion": 4, "comentario": "Emotiva y espectacular. Algunos momentos te rompen el corazón de maneras que no esperabas ni imaginabas." },
+    { "usuario": "Cristóbal A.", "calificacion": 5, "comentario": "Un logro cinematográfico sin precedentes. El sacrificio de Tony Stark es uno de los momentos más icónicos del cine." },
+    { "usuario": "Javiera S.", "calificacion": 5, "comentario": "Llorando desde el minuto uno hasta el final de los créditos. Una despedida digna para personajes que amé por años." }
+  ]
+}
