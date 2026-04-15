@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Rentar Películas - CinePlus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div id="navbar-container"></div>
+
+  <main class="container py-5">
+    <div class="renta-container">
+      <form id="form-renta" novalidate>
+
+        <!-- SECCIÓN: DATOS DEL CLIENTE -->
+        <fieldset class="mb-4">
+          <legend style="color:#fff;font-family:var(--font-body);font-weight:700;font-size:1.2rem;letter-spacing:0px;border-bottom:1px solid var(--color-border);padding-bottom:8px;margin-bottom:20px;">
+            👤 Datos del cliente
+          </legend>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Nombre completo</label>
+              <input type="text" class="form-control" id="cliente-nombre" placeholder="Ej. Juan Pérez" required>
+              <div class="invalid-feedback">Ingresa tu nombre completo.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="cliente-correo" placeholder="correo@ejemplo.com" required>
+              <div class="invalid-feedback">Ingresa un correo válido.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Días de renta</label>
+              <input type="number" class="form-control" id="dias-renta" min="1" max="30" value="3" required>
+              <div class="invalid-feedback">Entre 1 y 30 días.</div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- SECCIÓN: SELECCIÓN DE PELÍCULAS -->
+        <fieldset class="mb-4">
+          <legend style="color:#fff;font-family:var(--font-body);font-weight:700;font-size:1.2rem;letter-spacing:0px;border-bottom:1px solid var(--color-border);padding-bottom:8px;margin-bottom:20px;">
+            🎬 Selecciona tus películas
+          </legend>
+          <div id="lista-peliculas-renta">
+            <div class="text-center py-3">
+              <div class="custom-spinner" style="width:35px;height:35px;border-width:3px;"></div>
+            </div>
+          </div>
+          <div class="invalid-feedback d-block" id="error-peliculas" style="display:none!important;"></div>
+        </fieldset>
+
+        <!-- SECCIÓN: FORMA DE PAGO -->
+        <fieldset class="mb-4">
+          <legend style="color:#fff;font-family:var(--font-body);font-weight:700;font-size:1.2rem;letter-spacing:0px;border-bottom:1px solid var(--color-border);padding-bottom:8px;margin-bottom:20px;">
+            💳 Forma de pago
+          </legend>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label">Método de pago</label>
+              <select class="form-select" id="metodo-pago" required>
+                <option value="">-- Selecciona --</option>
+                <option value="tarjeta">💳 Tarjeta de crédito/débito</option>
+                <option value="paypal">🅿️ PayPal</option>
+                <option value="transferencia">🏦 Transferencia bancaria</option>
+                <option value="efectivo">💵 Efectivo en tienda</option>
+              </select>
+              <div class="invalid-feedback">Selecciona una forma de pago.</div>
+            </div>
+
+            <!-- Campos de tarjeta (condicional) -->
+            <div id="campos-tarjeta" style="display:none;" class="col-12">
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label">Número de tarjeta</label>
+                  <input type="text" class="form-control" id="num-tarjeta" placeholder="**** **** **** ****" maxlength="19">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Vencimiento</label>
+                  <input type="month" class="form-control" id="vence-tarjeta">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">CVV</label>
+                  <input type="text" class="form-control" id="cvv-tarjeta" placeholder="***" maxlength="3">
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-cine w-100 py-3" style="font-size:1.1rem;border-radius:8px;">
+          🎟️ Confirmar renta
+        </button>
+
+      </form>
+    </div>
+  </main>
+
+  <!-- MODAL RESUMEN DE COMPRA -->
+  <div class="modal fade" id="modalResumen" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">✅ Renta confirmada</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="resumen-compra" id="resumen-contenido"></div>
+        </div>
+        <div class="modal-footer">
+          <a href="../index.html" class="btn-cine">Volver al inicio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-container"></div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/shared.js"></script>
+  <script>
+    $(function () {
+      renderNavbar('renta');
+      renderFooter();
+
+      let peliculasData = [];
+      const hoy = new Date();
+
+      // ===== CARGAR PELÍCULAS PARA SELECCIÓN =====
+      $.ajax({
+        url: '../data/peliculas.json',
+        method: 'GET',
+        dataType: 'json',
+        success: function (peliculas) {
+          peliculasData = peliculas;
+          let html = '';
+          peliculas.forEach(function (p) {
+            const fechaEstreno = new Date(p.estreno);
+            const diasDesdeEstreno = Math.floor((hoy - fechaEstreno) / (1000 * 60 * 60 * 24));
+            const esEstreno = diasDesdeEstreno >= 0 && diasDesdeEstreno <= 30;
+            const precio = esEstreno ? p.precios.estreno : p.precios.normal;
+
+            html += `
+              <div class="pelicula-check-item">
+                <div style="display:flex;align-items:center;gap:14px;">
+                  <input type="checkbox" class="form-check-input pelicula-checkbox"
+                    id="peli-${p.id}" value="${p.id}"
+                    data-precio="${precio}" data-titulo="${p.titulo}"
+                    style="width:20px;height:20px;cursor:pointer;accent-color:var(--color-primary);">
+                  <label for="peli-${p.id}" style="cursor:pointer;flex:1;">
+                    <span style="color:#fff;font-weight:600;">${p.titulo}</span>
+                    <span class="badge-genero ms-2">${p.generos[0]}</span>
+                    ${esEstreno ? '<span class="badge-estreno ms-1">ESTRENO</span>' : ''}
+                    <br>
+                    <span class="precio-tag" style="font-size:0.95rem;">$${precio.toFixed(2)}</span>
+                    <span style="color:var(--color-muted);font-size:0.8rem;"> / día</span>
+                  </label>
+                </div>
+              </div>
+            `;
+          });
+          $('#lista-peliculas-renta').html(html);
+        }
+      });
+
+      // ===== MOSTRAR CAMPOS TARJETA =====
+      $('#metodo-pago').on('change', function () {
+        if ($(this).val() === 'tarjeta') {
+          $('#campos-tarjeta').slideDown(300);
+        } else {
+          $('#campos-tarjeta').slideUp(300);
+        }
+      });
+
+      // ===== FORMATO NÚMERO TARJETA =====
+      $('#num-tarjeta').on('input', function () {
+        let val = $(this).val().replace(/\D/g, '').substring(0, 16);
+        val = val.replace(/(\d{4})/g, '$1 ').trim();
+        $(this).val(val);
+      });
+
+      // ===== SUBMIT FORMULARIO =====
+      $('#form-renta').on('submit', function (e) {
+        e.preventDefault();
+
+        const nombre = $('#cliente-nombre').val().trim();
+        const correo = $('#cliente-correo').val().trim();
+        const dias = parseInt($('#dias-renta').val());
+        const metodo = $('#metodo-pago').val();
+
+        // Películas seleccionadas
+        const seleccionadas = [];
+        $('.pelicula-checkbox:checked').each(function () {
+          seleccionadas.push({
+            id: $(this).val(),
+            titulo: $(this).data('titulo'),
+            precio: parseFloat($(this).data('precio'))
+          });
+        });
+
+        // Validaciones
+        let valido = true;
+
+        if (!nombre) { $('#cliente-nombre').addClass('is-invalid'); valido = false; }
+        else $('#cliente-nombre').removeClass('is-invalid').addClass('is-valid');
+
+        if (!correo || !/\S+@\S+\.\S+/.test(correo)) { $('#cliente-correo').addClass('is-invalid'); valido = false; }
+        else $('#cliente-correo').removeClass('is-invalid').addClass('is-valid');
+
+        if (!dias || dias < 1 || dias > 30) { $('#dias-renta').addClass('is-invalid'); valido = false; }
+        else $('#dias-renta').removeClass('is-invalid').addClass('is-valid');
+
+        if (!metodo) { $('#metodo-pago').addClass('is-invalid'); valido = false; }
+        else $('#metodo-pago').removeClass('is-invalid').addClass('is-valid');
+
+        if (seleccionadas.length === 0) {
+          $('#error-peliculas').text('Debes seleccionar al menos una película.').show();
+          valido = false;
+        } else {
+          $('#error-peliculas').hide();
+        }
+
+        if (!valido) return;
+
+        // Calcular total
+        const subtotal = seleccionadas.reduce((acc, p) => acc + p.precio, 0);
+        const total = subtotal * dias;
+
+        // Construir resumen
+        const peliListHtml = seleccionadas.map(p =>
+          `<div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="color:#ddd;">🎬 ${p.titulo}</span>
+            <span style="color:var(--color-gold);">$${(p.precio * dias).toFixed(2)}</span>
+          </div>`
+        ).join('');
+
+        const metodosLabel = {
+          tarjeta: '💳 Tarjeta',
+          paypal: '🅿️ PayPal',
+          transferencia: '🏦 Transferencia',
+          efectivo: '💵 Efectivo'
+        };
+
+        $('#resumen-contenido').html(`
+          <div style="margin-bottom:16px;">
+            <div style="color:var(--color-muted);font-size:0.85rem;">Cliente</div>
+            <div style="color:#fff;font-weight:600;">${nombre}</div>
+            <div style="color:var(--color-muted);font-size:0.9rem;">${correo}</div>
+          </div>
+          <hr style="border-color:#333;">
+          <div style="margin-bottom:12px;">
+            <div style="color:var(--color-muted);font-size:0.85rem;margin-bottom:8px;">Películas rentadas</div>
+            ${peliListHtml}
+          </div>
+          <hr style="border-color:#333;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="color:var(--color-muted);">Días de renta</span>
+            <span style="color:#ddd;">${dias} día${dias > 1 ? 's' : ''}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="color:var(--color-muted);">Forma de pago</span>
+            <span style="color:#ddd;">${metodosLabel[metodo]}</span>
+          </div>
+          <hr style="border-color:#333;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#fff;font-weight:700;">Total a pagar</span>
+            <span class="total-precio">$${total.toFixed(2)}</span>
+          </div>
+        `);
+
+        $('#modalResumen').modal('show');
+      });
+    });
+  </script>
+</body>
+</html>
