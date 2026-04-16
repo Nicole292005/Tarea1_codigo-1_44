@@ -5,37 +5,158 @@
   <title>Contacto - CinePlus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <div class="container py-5">
-    <h2 class="mb-4">Contáctanos</h2>
-    <form id="form-contacto" novalidate>
-      <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" required>
+
+  <div id="navbar-container"></div>
+
+  <main class="container py-5">
+    <div class="contacto-container">
+
+      <!-- Alerta éxito -->
+      <div id="alerta-exito" class="d-none mb-4"
+        style="background:rgba(81,207,102,0.15);border:1px solid #51cf66;border-radius:8px;padding:16px;color:#51cf66;text-align:center;">
+        ✅ <strong>¡Mensaje enviado con éxito!</strong> Te responderemos pronto.
       </div>
-      <div class="mb-3">
-        <label for="correo" class="form-label">Correo electrónico</label>
-        <input type="email" class="form-control" id="correo" required>
-      </div>
-      <div class="mb-3">
-        <label for="mensaje" class="form-label">Mensaje</label>
-        <textarea class="form-control" id="mensaje" rows="4" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Enviar</button>
-      <div id="alerta" class="alert alert-success mt-3 d-none">Mensaje enviado con éxito.</div>
-    </form>
-  </div>
+
+      <form id="form-contacto" novalidate>
+
+        <div class="mb-4">
+          <label for="nombre" class="form-label">Nombre completo</label>
+          <input type="text" class="form-control" id="nombre"
+            placeholder="Ej. María García" required>
+          <div class="invalid-feedback">Por favor ingresa tu nombre completo.</div>
+          <div class="valid-feedback">¡Perfecto!</div>
+        </div>
+
+        <div class="mb-4">
+          <label for="correo" class="form-label">Correo electrónico</label>
+          <input type="email" class="form-control" id="correo"
+            placeholder="tu@correo.com" required>
+          <div class="invalid-feedback">Ingresa una dirección de correo válida.</div>
+          <div class="valid-feedback">Correo válido.</div>
+        </div>
+
+        <div class="mb-4">
+          <label for="asunto" class="form-label">Asunto</label>
+          <select class="form-select" id="asunto" required>
+            <option value="">-- Selecciona un asunto --</option>
+            <option value="soporte">🛠️ Soporte técnico</option>
+            <option value="pago">💳 Problemas de pago</option>
+            <option value="sugerencia">💡 Sugerencia</option>
+            <option value="otro">📝 Otro</option>
+          </select>
+          <div class="invalid-feedback">Selecciona un asunto.</div>
+        </div>
+
+        <div class="mb-4">
+          <label for="mensaje" class="form-label">
+            Mensaje
+            <span id="contador-chars" style="color:var(--color-muted);font-size:0.8rem;margin-left:8px;">0 / 50 caracteres</span>
+          </label>
+          <textarea class="form-control" id="mensaje" rows="4"
+            placeholder="Escribe tu mensaje aquí (entre 20 y 50 caracteres)..."
+            minlength="20" maxlength="50" required></textarea>
+          <div class="invalid-feedback" id="error-mensaje">El mensaje debe tener entre 20 y 50 caracteres.</div>
+          <div class="valid-feedback">Mensaje válido.</div>
+          <div style="color:var(--color-muted);font-size:0.8rem;margin-top:4px;">
+            📝 Mínimo 20 caracteres, máximo 50 caracteres.
+          </div>
+        </div>
+
+        <button type="submit" class="btn-cine w-100 py-3" style="font-size:1.05rem;border-radius:8px;">
+          📨 Enviar mensaje
+        </button>
+
+      </form>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/shared.js"></script>
   <script>
-    $('#form-contacto').on('submit', function (e) {
-      e.preventDefault();
-      if (this.checkValidity()) {
-        $('#alerta').removeClass('d-none').hide().fadeIn();
-        setTimeout(() => $('#alerta').fadeOut(), 3000);
-        this.reset();
-      }
+    $(function () {
+      renderNavbar('contacto');
+      renderFooter();
+
+      // ===== CONTADOR DE CARACTERES =====
+      $('#mensaje').on('input', function () {
+        const len = $(this).val().length;
+        const contador = $('#contador-chars');
+        contador.text(`${len} / 50 caracteres`);
+
+        if (len < 20) {
+          contador.css('color', '#ff6b6b');
+        } else if (len <= 50) {
+          contador.css('color', '#51cf66');
+        }
+      });
+
+      // ===== VALIDACIÓN =====
+      $('#form-contacto').on('submit', function (e) {
+        e.preventDefault();
+        let valido = true;
+
+        // Nombre
+        const nombre = $('#nombre').val().trim();
+        if (!nombre || nombre.length < 3) {
+          $('#nombre').addClass('is-invalid').removeClass('is-valid');
+          valido = false;
+        } else {
+          $('#nombre').addClass('is-valid').removeClass('is-invalid');
+        }
+
+        // Correo
+        const correo = $('#correo').val().trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!correo || !emailRegex.test(correo)) {
+          $('#correo').addClass('is-invalid').removeClass('is-valid');
+          valido = false;
+        } else {
+          $('#correo').addClass('is-valid').removeClass('is-invalid');
+        }
+
+        // Asunto
+        const asunto = $('#asunto').val();
+        if (!asunto) {
+          $('#asunto').addClass('is-invalid').removeClass('is-valid');
+          valido = false;
+        } else {
+          $('#asunto').addClass('is-valid').removeClass('is-invalid');
+        }
+
+        // Mensaje (20-50 chars)
+        const mensaje = $('#mensaje').val().trim();
+        if (mensaje.length < 20 || mensaje.length > 50) {
+          $('#mensaje').addClass('is-invalid').removeClass('is-valid');
+          if (mensaje.length < 20) {
+            $('#error-mensaje').text(`Mensaje demasiado corto. Faltan ${20 - mensaje.length} caracteres.`);
+          } else {
+            $('#error-mensaje').text(`Mensaje demasiado largo. Reduce ${mensaje.length - 50} caracteres.`);
+          }
+          valido = false;
+        } else {
+          $('#mensaje').addClass('is-valid').removeClass('is-invalid');
+        }
+
+        if (!valido) return;
+
+        // ===== ÉXITO =====
+        $('#alerta-exito').removeClass('d-none').hide().fadeIn(400);
+        $(this)[0].reset();
+        $('#contador-chars').text('0 / 50 caracteres').css('color', 'var(--color-muted)');
+        $('input, textarea, select').removeClass('is-valid is-invalid');
+
+        // Ocultar alerta después de 4 segundos
+        setTimeout(() => $('#alerta-exito').fadeOut(400), 4000);
+
+        // Scroll al mensaje de éxito
+        $('html, body').animate({ scrollTop: $('#alerta-exito').offset().top - 100 }, 400);
+      });
     });
   </script>
 </body>
